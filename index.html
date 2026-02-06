@@ -1,1 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>PESHO PANEL</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+    font-family:Poppins,Arial,sans-serif;
+    background:linear-gradient(135deg,#0a0f21,#000);
+    color:#e0f7ff;
+    text-align:center;
+}
+
+/* HEADER */
+header{padding:40px 20px}
+header h1{
+    font-size:52px;
+    color:#00ffff;
+    text-shadow:0 0 25px #00ffff;
+}
+header p{opacity:.8;margin-top:10px}
+
+/* PRODUCTS */
+.products{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:30px;
+    max-width:1000px;
+    margin:auto;
+    padding:20px;
+}
+.card{
+    background:rgba(255,255,255,.08);
+    backdrop-filter:blur(12px);
+    border-radius:20px;
+    border:1px solid rgba(255,255,255,.15);
+    padding:22px;
+    box-shadow:0 0 25px rgba(0,255,255,.15);
+    transition:.35s;
+}
+.card:hover{
+    transform:scale(1.07);
+    box-shadow:0 0 45px rgba(0,255,255,.45);
+}
+
+/* VIDEO PREVIEW */
+.preview{
+    position:relative;
+    height:170px;
+    border-radius:14px;
+    overflow:hidden;
+    cursor:pointer;
+}
+.preview video{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+.preview::after{
+    content:"▶";
+    position:absolute;
+    inset:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:50px;
+    color:#00ffff;
+    background:rgba(0,0,0,.35);
+}
+
+/* PRODUCT TEXT */
+h3{margin-top:15px;font-size:22px}
+.price{
+    font-size:20px;
+    color:#00ffbb;
+    font-weight:700;
+    margin:10px 0;
+}
+
+/* BUTTON */
+button{
+    width:100%;
+    padding:12px;
+    border:none;
+    border-radius:30px;
+    font-size:16px;
+    font-weight:bold;
+    background:linear-gradient(90deg,#00ffe7,#00cdd1);
+    cursor:pointer;
+    box-shadow:0 0 20px rgba(0,255,255,.6);
+}
+button:hover{
+    box-shadow:0 0 35px rgba(0,255,255,.9);
+}
+
+/* CONTACT */
+.contact{
+    display:flex;
+    flex-wrap:wrap;
+    gap:20px;
+    justify-content:center;
+    padding:40px 15px;
+}
+.box{
+    flex:1;
+    min-width:260px;
+    background:rgba(255,255,255,.06);
+    backdrop-filter:blur(10px);
+    border-radius:20px;
+    padding:25px;
+    box-shadow:0 0 30px rgba(0,255,255,.25);
+}
+
+/* FOOTER */
+footer{opacity:.6;font-size:14px;margin-bottom:20px}
+
+/* FULLSCREEN MODAL */
+#videoModal{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:#000;
+    z-index:999;
+}
+#videoModal video{
+    width:100%;
+    height:100%;
+    object-fit:contain;
+}
+#close{
+    position:absolute;
+    top:15px;
+    right:20px;
+    font-size:30px;
+    color:#00ffff;
+    cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>🔥 PESHO PANEL 🔥</h1>
+<p>Premium Gaming Tools Marketplace</p>
+</header>
+
+<div class="products">
+
+<!-- PRODUCT 1 -->
+<div class="card">
+<div class="preview"
+     onmouseenter="playHover(this)"
+     onmouseleave="stopHover(this)"
+     onclick="openVideo('videos/drag.mp4')">
+<video muted preload="none">
+<source src="videos/drag.mp4" type="video/mp4">
+</video>
+</div>
+<h3>AIMBOT DRAG</h3>
+<p class="price">Rs 1,000</p>
+<button onclick="order('AIMBOT DRAG - Rs 1000')">Order on WhatsApp</button>
+</div>
+
+<!-- PRODUCT 2 -->
+<div class="card">
+<div class="preview"
+     onmouseenter="playHover(this)"
+     onmouseleave="stopHover(this)"
+     onclick="openVideo('videos/head.mp4')">
+<video muted preload="none">
+<source src="videos/head.mp4" type="video/mp4">
+</video>
+</div>
+<h3>AIMBOT HEAD</h3>
+<p class="price">Rs 1,800</p>
+<button onclick="order('AIMBOT HEAD - Rs 1800')">Order on WhatsApp</button>
+</div>
+
+<!-- PRODUCT 3 -->
+<div class="card">
+<div class="preview"
+     onmouseenter="playHover(this)"
+     onmouseleave="stopHover(this)"
+     onclick="openVideo('videos/body.mp4')">
+<video muted preload="none">
+<source src="videos/body.mp4" type="video/mp4">
+</video>
+</div>
+<h3>AIMBOT BODY</h3>
+<p class="price">Rs 2,800</p>
+<button onclick="order('AIMBOT BODY - Rs 2800')">Order on WhatsApp</button>
+</div>
+
+</div>
+
+<div class="contact">
+<div class="box">
+<h3>💬 WhatsApp Support</h3>
+<a href="https://wa.me/923120265427">
+<button style="background:#25D366">Chat on WhatsApp</button>
+</a>
+</div>
+
+<div class="box">
+<h3>💸 Easypaisa Payment</h3>
+<p><b>03439885427</b></p>
+<p>Account Name: <b>NAZAKAT BIBI</b></p>
+</div>
+</div>
+
+<footer>© 2026 PESHO PANEL</footer>
+
+<!-- FULLSCREEN VIDEO PLAYER -->
+<div id="videoModal">
+<span id="close" onclick="closeVideo()">✕</span>
+<video id="fullVideo" controls autoplay></video>
+</div>
+
+<script>
+function order(product){
+let msg="🔥 PESHO PANEL ORDER 🔥%0AProduct: "+product;
+window.open("https://wa.me/923120265427?text="+msg,"_blank");
+}
+
+/* HOVER SOUND + PREVIEW */
+function playHover(el){
+const v=el.querySelector("video");
+v.muted=false;
+v.volume=0.7;
+v.play();
+}
+function stopHover(el){
+const v=el.querySelector("video");
+v.pause();
+v.currentTime=0;
+v.muted=true;
+}
+
+/* FULLSCREEN */
+function openVideo(src){
+const modal=document.getElementById("videoModal");
+const video=document.getElementById("fullVideo");
+video.src=src;
+modal.style.display="block";
+}
+function closeVideo(){
+const modal=document.getElementById("videoModal");
+const video=document.getElementById("fullVideo");
+video.pause();
+video.src="";
+modal.style.display="none";
+}
+</script>
+
+</body>
+</html>
