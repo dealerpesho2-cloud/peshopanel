@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>PESHO PANEL | Free Fire</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Rajdhani',sans-serif}
+body{background:#050505;color:#fff;overflow-x:hidden}
+
+#particles-js{position:fixed;width:100%;height:100%;z-index:-2}
+
+.floating{
+position:fixed;top:0;left:0;width:100%;height:100%;
+background:radial-gradient(circle at top,rgba(0,255,225,0.08),transparent);
+animation:floatbg 6s infinite alternate;
+pointer-events:none;z-index:-1
+}
+@keyframes floatbg{from{transform:translateY(0)}to{transform:translateY(-30px)}}
+
+header{text-align:center;padding:40px 20px}
+header h1{font-size:42px;color:#00ffe1;text-shadow:0 0 20px rgba(0,255,225,0.9)}
+header span{color:#ff0055}
+
+.container{max-width:1200px;margin:auto;padding:20px}
+
+.panel{
+background:rgba(255,255,255,0.06);
+border:1px solid rgba(255,255,255,0.15);
+border-radius:18px;
+padding:25px;
+margin-bottom:30px;
+box-shadow:0 0 30px rgba(0,255,255,0.2);
+animation:fadeUp 1s forwards, glow 3s infinite ease-in-out;
+transition:0.4s
+}
+.panel:hover{transform:translateY(-12px) scale(1.02)}
+
+@keyframes glow{
+0%{box-shadow:0 0 15px rgba(0,255,225,0.3)}
+50%{box-shadow:0 0 40px rgba(0,255,225,0.7)}
+100%{box-shadow:0 0 15px rgba(0,255,225,0.3)}
+}
+@keyframes fadeUp{
+from{opacity:0;transform:translateY(40px)}
+to{opacity:1;transform:translateY(0)}
+}
+
+.panel h2{text-align:center;color:#00ffe1;margin-bottom:10px}
+.price{font-size:18px;margin:6px 0;color:#ffcc00}
+
+.video-box{
+margin:15px 0;
+border-radius:14px;
+overflow:hidden;
+box-shadow:0 0 20px rgba(0,255,225,0.4)
+}
+video{width:100%;display:block}
+
+ul{list-style:none;margin:15px 0}
+ul li{padding:6px 0}
+
+select{
+width:100%;
+padding:10px;
+border-radius:8px;
+border:none;
+margin-top:10px;
+font-weight:600
+}
+
+.buy-btn{
+display:block;margin-top:15px;text-align:center;
+background:linear-gradient(45deg,#00ffe1,#ff0055);
+padding:12px;border-radius:12px;
+color:#000;font-weight:800;text-decoration:none;
+animation:pulse 2s infinite;
+cursor:pointer
+}
+@keyframes pulse{
+0%{transform:scale(1)}
+50%{transform:scale(1.05)}
+100%{transform:scale(1)}
+}
+
+.payment,.contact{text-align:center;margin:40px 0}
+.payment h3,.contact h3{color:#00ffe1}
+
+footer{text-align:center;padding:20px;font-size:14px;opacity:0.7}
+
+/* WhatsApp Floating Button */
+.whatsapp-float{
+position:fixed;
+bottom:20px;
+right:20px;
+background:#25D366;
+color:#fff;
+padding:14px 18px;
+border-radius:50px;
+font-weight:700;
+text-decoration:none;
+box-shadow:0 0 20px rgba(0,0,0,0.4);
+z-index:999
+}
+</style>
+</head>
+
+<body>
+
+<div id="particles-js"></div>
+<div class="floating"></div>
+
+<a class="whatsapp-float" target="_blank"
+href="https://wa.me/923120265427?text=Hello%20PESHO%20PANEL%20Support">
+WhatsApp Support
+</a>
+
+<header>
+<h1>PESHO <span>PANEL</span></h1>
+<p>Premium Free Fire Gaming Panels</p>
+</header>
+
+<div class="container">
+
+<!-- ANDROID -->
+<div class="panel">
+<h2>ANDROID PANEL</h2>
+
+<div class="video-box">
+<video controls muted loop>
+<source src="android.mp4">
+</video>
+</div>
+
+<div class="price">Lifetime Rs 2500 | 2 Month Rs 1500</div>
+
+<ul>
+<li>Anti Ban</li>
+<li>Anti Blacklisted</li>
+<li>For Main Account</li>
+<li>All Rank Working</li>
+</ul>
+
+
+<select id="androidPlan">
+<option value="">Select Plan</option>
+<option value="Lifetime - Rs 2500">Lifetime - Rs 2500</option>
+<option value="2 Month - Rs 1500">2 Month - Rs 1500</option>
+</select>
+
+<div class="buy-btn" onclick="order('ANDROID PANEL','androidPlan')">BUY NOW</div>
+</div>
+
+<!-- IPHONE -->
+<div class="panel">
+<h2>IPHONE IPA PANEL</h2>
+
+<div class="video-box">
+<video controls muted loop>
+<source src="iphone.mp4">
+</video>
+</div>
+
+<div class="price">Lifetime Rs 3000 | 2 Month Rs 2000</div>
+
+<ul>
+<li>Anti Ban</li>
+<li>Anti Blacklisted</li>
+<li>For Main Account</li>
+<li>All Rank Working</li>
+</ul>
+
+<select id="iphoneIpaPlan">
+<option value="">Select Plan</option>
+<option value="Lifetime - Rs 3000">Lifetime - Rs 3000</option>
+<option value="2 Month - Rs 2000">2 Month - Rs 2000</option>
+</select>
+
+<div class="buy-btn" onclick="order('IPHONE IPA PANEL','iphoneIpaPlan')">BUY NOW</div>
+</div>
+
+<!-- IPHONE FLUORITE -->
+<div class="panel">
+<h2>IPHONE FLUORITE PANEL</h2>
+
+<div class="video-box">
+<video controls muted loop>
+<source src="fluorite.mp4">
+</video>
+</div>
+
+<div class="price">Lifetime Rs 5000 | 2 Month Rs 3000</div>
+
+<ul>
+<li>Streamer mode </li>
+<li>ESP Location</li>
+<li>ALL BRUTAL MODE</li>
+<li>AUTO FIRE</li>
+</ul>
+
+<select id="iphoneFluoritePlan">
+<option value="">Select Plan</option>
+<option value="Lifetime - Rs 5000">Lifetime - Rs 5000</option>
+<option value="2 Month - Rs 3000">2 Month - Rs 3000</option>
+</select>
+
+<div class="buy-btn" onclick="order('IPHONE FLUORITE PANEL','iphoneFluoritePlan')">
+BUY NOW
+</div>
+</div>
+
+<!-- PC -->
+<div class="panel">
+<h2>PC EXTERNAL PANEL</h2>
+
+<div class="video-box">
+<video controls muted loop>
+<source src="pc.mp4">
+</video>
+</div>
+
+<div class="price">Lifetime Rs 3500 | 2 Month Rs 2500 | 1 Month Rs 1500</div>
+
+
+<ul>
+<li>AIMBOT HEAD</li>
+<li>AIMBOT BODY</li>
+<li>SNIPER SWITCH</li>
+<li>SNIPER SCOPE</li>
+<li>CHAMS</li>
+<li>SPEED HACK</li>
+<li>WALL HACK</li>
+<li>FLY HACK</li>
+<li>AIM FOV</li>
+<li>NO RECOIL</li>
+</ul>
+
+<select id="pcPlan">
+<option value="">Select Plan</option>
+<option value="Lifetime - Rs 3500">Lifetime - Rs 3500</option>
+<option value="2 Month - Rs 2500">2 Month - Rs 2500</option>
+<option value="1 Month - Rs 1500">1 Month - Rs 1500</option>
+</select>
+
+<div class="buy-btn" onclick="order('PC PANEL','pcPlan')">BUY NOW</div>
+</div>
+
+<!-- PC BYPASS -->
+<div class="panel">
+<h2>PC BYPASS</h2>
+
+<div class="video-box">
+<video controls muted loop>
+<source src="bypass.mp4">
+</video>
+</div>
+
+<div class="price">2 Month Rs 4000 | 1 Month Rs 2500</div>
+
+<ul>
+<li>When you install Bepsis, then when you start the game, there will be no panel effect against you. All mobile players.</li>
+
+</ul>
+
+<select id="PcBypassPlan">
+<option value="">Select Plan</option>
+<option value="Lifetime - Rs 4000">Lifetime - Rs 4000</option>
+<option value="2 Month - Rs 2500">2 Month - Rs 2500</option>
+</select>
+
+<div class="buy-btn" onclick="order('PC BYPASS','PcBypassPlan')">
+BUY NOW
+</div>
+</div>
+
+
+</ul>
+
+
+
+<div class="payment">
+<h3>PAYMENT METHOD</h3>
+<p>Easypaisa</p>
+<p><b>Number:</b> 03439885427</p>
+<p><b>Name:</b> Nazakat Bibi</p>
+</div>
+
+</div>
+
+<footer>© 2026 PESHO PANEL | All Rights Reserved</footer>
+
+<script>
+function order(panel,selectId){
+  let plan = document.getElementById(selectId).value;
+  if(plan === ""){
+    alert("Please select a plan first!");
+    return;
+  }
+  let msg = `PESHO PANEL ORDER%0A%0APANEL: ${panel}%0APLAN: ${plan}`;
+  window.open("https://wa.me/923120265427?text="+msg,"_blank");
+}
+
+particlesJS("particles-js",{
+particles:{
+number:{value:120},
+color:{value:["#00ffe1","#ff0055"]},
+shape:{type:"circle"},
+opacity:{value:0.6,random:true},
+size:{value:3,random:true},
+line_linked:{enable:true,color:"#00ffe1",opacity:0.4},
+move:{enable:true,speed:2}
+},
+interactivity:{
+events:{onhover:{enable:true,mode:"grab"},onclick:{enable:true,mode:"push"}}
+},
+retina_detect:true
+});
+</script>
+
+</body>
+</html>
