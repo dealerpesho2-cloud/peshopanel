@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<!-- Disables Pinch-to-Zoom & Double-Tap Zoom -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<title>PESHO PANEL | VIP</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800;900&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+:root {
+  --primary-gold: #ffd700;
+  --gold-glow: rgba(255, 215, 0, 0.4);
+  --gold-gradient: linear-gradient(135deg, #fff2a3 0%, #ffd700 50%, #b8860b 100%);
+  --dark-bg: #09090b;
+  --card-bg: rgba(20, 20, 24, 0.75);
+}
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Rajdhani', sans-serif;
+-webkit-tap-highlight-color: transparent;
+}
+
+html, body {
+touch-action: manipulation;
+width: 100%;
+overflow-x: hidden;
+perspective: 1000px;
+}
+
+body{
+background-color: var(--dark-bg);
+background-image: 
+  radial-gradient(circle at 50% 0%, rgba(255, 215, 0, 0.08) 0%, transparent 60%),
+  radial-gradient(circle at 50% 100%, rgba(255, 215, 0, 0.05) 0%, transparent 50%);
+color: white;
+min-height: 100vh;
+position: relative;
+}
+
+/* Luxury Particle Canvas */
+#particles-canvas {
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+z-index: -1;
+pointer-events: none;
+transition: transform 0.1s ease-out;
+}
+
+.container{
+width: 92%;
+max-width: 480px;
+margin: 30px auto;
+padding: 25px 20px;
+background: var(--card-bg);
+border: 1px solid rgba(255, 215, 0, 0.3);
+border-radius: 28px;
+box-shadow: 
+  0 20px 50px rgba(0, 0, 0, 0.9),
+  0 0 30px rgba(255, 215, 0, 0.15),
+  inset 0 0 15px rgba(255, 215, 0, 0.05);
+backdrop-filter: blur(16px);
+-webkit-backdrop-filter: blur(16px);
+position: relative;
+overflow: hidden;
+/* Smooth Gyro Tilt Transition */
+transition: transform 0.15s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+transform-style: preserve-3d;
+will-change: transform;
+}
+
+.container::before {
+content: '';
+position: absolute;
+top: -50%;
+left: -50%;
+width: 200%;
+height: 200%;
+background: radial-gradient(circle, rgba(255,215,0,0.03) 0%, transparent 70%);
+pointer-events: none;
+}
+
+/* Logo Design */
+.logo{
+text-align: center;
+font-family: 'Orbitron', sans-serif;
+font-size: 32px;
+font-weight: 900;
+letter-spacing: 2px;
+background: var(--gold-gradient);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+text-shadow: 0 0 25px rgba(255, 215, 0, 0.3);
+margin-bottom: 25px;
+text-transform: uppercase;
+}
+
+.logo span{
+color: #ffffff;
+-webkit-text-fill-color: #ffffff;
+font-weight: 600;
+}
+
+/* Navigation Tabs */
+.nav-tabs {
+display: flex;
+justify-content: space-between;
+gap: 8px;
+margin-bottom: 25px;
+background: rgba(10, 10, 12, 0.6);
+padding: 6px;
+border-radius: 16px;
+border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.tab-btn {
+flex: 1;
+padding: 12px 4px;
+font-size: 14px;
+font-weight: 700;
+background: transparent;
+color: #8a8a93;
+border: none;
+border-radius: 12px;
+cursor: pointer;
+transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+text-align: center;
+text-transform: uppercase;
+letter-spacing: 0.5px;
+}
+
+.tab-btn.active {
+background: var(--gold-gradient);
+color: #000;
+font-weight: 800;
+box-shadow: 0 4px 20px var(--gold-glow);
+}
+
+.tab-btn:hover:not(.active) {
+color: #fff;
+background: rgba(255, 255, 255, 0.05);
+}
+
+.section{
+display: none;
+animation: fadeIn 0.4s ease-in-out;
+}
+
+@keyframes fadeIn {
+from { opacity: 0; transform: translateY(8px); }
+to { opacity: 1; transform: translateY(0); }
+}
+
+.section.active-section {
+display: block;
+}
+
+h2{
+font-family: 'Orbitron', sans-serif;
+color: #fff;
+font-size: 20px;
+margin-bottom: 15px;
+letter-spacing: 1px;
+display: flex;
+align-items: center;
+gap: 10px;
+}
+
+/* Card Styling */
+.card{
+background: rgba(28, 28, 35, 0.6);
+padding: 22px;
+border-radius: 20px;
+margin-bottom: 15px;
+border: 1px solid rgba(255, 215, 0, 0.2);
+box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1);
+transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.card:hover {
+border-color: rgba(255, 215, 0, 0.5);
+transform: translateY(-2px);
+}
+
+.card h3{
+font-family: 'Orbitron', sans-serif;
+background: var(--gold-gradient);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+font-size: 20px;
+margin-bottom: 12px;
+letter-spacing: 1px;
+}
+
+.card p{
+font-size: 16px;
+line-height: 1.8;
+color: #d1d1d6;
+font-weight: 500;
+}
+
+select{
+width: 100%;
+padding: 14px;
+margin-top: 18px;
+border-radius: 12px;
+font-size: 16px;
+font-weight: 600;
+background: #121215;
+color: #fff;
+border: 1px solid rgba(255, 215, 0, 0.3);
+outline: none;
+cursor: pointer;
+transition: border-color 0.3s ease;
+}
+
+select:focus {
+border-color: var(--primary-gold);
+box-shadow: 0 0 10px var(--gold-glow);
+}
+
+/* Button Styling */
+button.buy-btn {
+width: 100%;
+padding: 15px;
+margin-top: 18px;
+border: none;
+border-radius: 14px;
+background: var(--gold-gradient);
+color: #000;
+font-family: 'Orbitron', sans-serif;
+font-size: 15px;
+font-weight: 900;
+letter-spacing: 1px;
+text-transform: uppercase;
+cursor: pointer;
+box-shadow: 0 6px 20px var(--gold-glow);
+transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+button.buy-btn:hover{
+transform: translateY(-3px);
+box-shadow: 0 10px 28px rgba(255, 215, 0, 0.6);
+filter: brightness(1.1);
+}
+
+button.buy-btn:active {
+transform: translateY(-1px);
+}
+
+.payment{
+line-height: 1.9;
+font-size: 17px;
+color: #e4e4e6;
+}
+
+.payment b {
+color: var(--primary-gold);
+font-size: 18px;
+}
+
+.footer{
+text-align: center;
+margin-top: 30px;
+font-size: 13px;
+color: #666673;
+letter-spacing: 1px;
+font-weight: 600;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<canvas id="particles-canvas"></canvas>
+
+<div class="container" id="main-card">
+
+<div class="logo">
+PESHO <span>PANEL</span>
+</div>
+
+<div class="nav-tabs">
+<button class="tab-btn active" onclick="switchTab('androidTab', this)">Android</button>
+<button class="tab-btn" onclick="switchTab('iphoneTab', this)">iPhone</button>
+<button class="tab-btn" onclick="switchTab('pcTab', this)">PC</button>
+<button class="tab-btn" onclick="switchTab('paymentTab', this)">Payment</button>
+</div>
+
+<!-- Android Section -->
+<div id="androidTab" class="section active-section">
+
+<h2>🤖 Android VIP</h2>
+
+<div class="card">
+
+<h3>Android Panel</h3>
+
+<p>
+♟️ Smart ESP<br>
+🎯 Powerful Aimbot<br>
+☠️ Magic Bullet<br>
+🏴‍☠️ Fully Lag - Crash Fixed<br>
+📱 Supported All Devices<br>
+🔒 Main Account Is Safe
+</p>
+
+<select id="android">
+
+<option value="Android  - 60 Days - 2000">
+60 Days - 2000
+</option>
+
+<option value="Android  - Lifetime - 3000">
+Lifetime - 3000
+</option>
+
+</select>
+
+<button class="buy-btn" onclick="buy('android')">
+Buy Now
+</button>
+
+</div>
+
+</div>
+
+<!-- iPhone Section -->
+<div id="iphoneTab" class="section">
+
+<h2>🍎 iPhone VIP</h2>
+
+<div class="card">
+
+<h3>iPhone Panel</h3>
+
+<p>
+♟️ Enemy Location<br>
+🎯 Aimbot<br>
+☠️ Body Headshot<br>
+🏴‍☠️ Fully Lag - Crash Fixed<br>
+📱 Supported All Versions<br>
+🔒 Main Account Is Safe
+</p>
+
+<select id="iphone">
+
+<option value="iPhone  - 60 Days - 2500">
+60 Days - 2500
+</option>
+
+<option value="iPhone  - Lifetime - 3500">
+Lifetime - 3500
+</option>
+
+</select>
+
+<button class="buy-btn" onclick="buy('iphone')">
+Buy Now
+</button>
+
+</div>
+
+</div>
+
+<!-- PC Section -->
+<div id="pcTab" class="section">
+
+<h2>🖥️ PC VIP</h2>
+
+<div class="card">
+
+<h3>PC Panel</h3>
+
+<p>
+♟️ Smart ESP<br>
+🎯 Powerful Aimbot<br>
+🧍🏻‍♀️ Female Fix<br>
+🎯 No Recoil<br>
+♾️ Unlimited Ammo<br>
+👁️‍🗨️ Aim Fav<br>
+🔄 No Reload<br>
+✨ Chams<br>
+🔃 Sniper Switch<br>
+🎯 Sniper Aim<br>
+🔥 Glitch Fire<br>
+🧱 Wall Hack<br>
+🎥 Camera Lift Hack<br>
+☠️ Magic Bullet<br>
+🏴‍☠️ Fully Lag - Crash Fixed<br>
+💻 Working Windows 10 & 11<br>
+🔒 Main Account Is Safe
+</p>
+
+<select id="pc">
+
+<option value="PC  - 30 Days - 1500">
+30 Days - 1500
+</option>
+
+<option value="PC  - 60 Days - 2000">
+60 Days - 2000
+</option>
+
+<option value="PC  - Lifetime - 4000">
+Lifetime - 4000
+</option>
+
+</select>
+
+<button class="buy-btn" onclick="buy('pc')">
+Buy Now
+</button>
+
+</div>
+
+</div>
+
+<!-- Payment Section -->
+<div id="paymentTab" class="section">
+
+<h2>💳 Payment Method</h2>
+
+<div class="card payment">
+
+<b>EasyPaisa:</b><br>
+
+➡️ 0312-0265427<br>
+
+MINHA JAN BIBI
+
+<br><br>
+
+After sending the payment, send me the screenshot of the receipt and also tell me the name on your EasyPaisa account.
+
+</div>
+
+</div>
+
+<div class="footer">
+
+© 2026 PESHO PANEL • ALL RIGHTS RESERVED
+
+</div>
+
+</div>
+
+<script>
+
+function switchTab(tabId, btn) {
+let sections = document.querySelectorAll('.section');
+sections.forEach(sec => sec.classList.remove('active-section'));
+
+let tabs = document.querySelectorAll('.tab-btn');
+tabs.forEach(t => t.classList.remove('active'));
+
+document.getElementById(tabId).classList.add('active-section');
+btn.classList.add('active');
+}
+
+function buy(type){
+
+let product="";
+let category="";
+
+if(type=="android"){
+product=document.getElementById("android").value;
+category="Android";
+}
+
+if(type=="iphone"){
+product=document.getElementById("iphone").value;
+category="iPhone";
+}
+
+if(type=="pc"){
+product=document.getElementById("pc").value;
+category="PC";
+}
+
+let number="03439885427";
+
+let message=
+"PESHO PANEL %0A%0A"+
+"Device : "+category+"%0A"+
+"Penal: "+product+"%0A%0A"+
+"I want to buy this panel .";
+
+window.open(
+"https://wa.me/"+number+"?text="+message,
+"_blank"
+);
+
+}
+
+// Gold Particle Animation Canvas
+const canvas = document.getElementById('particles-canvas');
+const ctx = canvas.getContext('2d');
+
+function resizeCanvas() {
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+}
+resizeCanvas();
+window.addEventListener('resize', resizeCanvas);
+
+const particles = [];
+const numParticles = 45;
+
+for (let i = 0; i < numParticles; i++) {
+particles.push({
+x: Math.random() * canvas.width,
+y: Math.random() * canvas.height,
+radius: Math.random() * 2 + 0.5,
+color: '#ffd700',
+vx: (Math.random() - 0.5) * 0.4,
+vy: (Math.random() - 0.5) * 0.4,
+alpha: Math.random() * 0.6 + 0.1
+});
+}
+
+function animateParticles() {
+ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+particles.forEach(p => {
+p.x += p.vx;
+p.y += p.vy;
+
+if (p.x < 0) p.x = canvas.width;
+if (p.x > canvas.width) p.x = 0;
+if (p.y < 0) p.y = canvas.height;
+if (p.y > canvas.height) p.y = 0;
+
+ctx.save();
+ctx.globalAlpha = p.alpha;
+ctx.beginPath();
+ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+ctx.fillStyle = p.color;
+ctx.shadowBlur = 8;
+ctx.shadowColor = '#ffd700';
+ctx.fill();
+ctx.restore();
+});
+
+requestAnimationFrame(animateParticles);
+}
+
+animateParticles();
+
+// Gyroscope / Device Motion System
+const card = document.getElementById('main-card');
+
+function handleOrientation(event) {
+  let x = event.gamma; 
+  let y = event.beta;
+
+  if (x === null || y === null) return;
+
+  // Max tilt limits for smooth effect
+  let tiltX = Math.max(-12, Math.min(12, x / 3)); 
+  let tiltY = Math.max(-12, Math.min(12, (y - 45) / 3));
+
+  card.style.transform = `rotateY(${tiltX}deg) rotateX(${-tiltY}deg) translateY(${tiltY}px)`;
+  canvas.style.transform = `translateX(${tiltX * 1.5}px) translateY(${tiltY * 1.5}px)`;
+}
+
+function initGyro() {
+  if (window.DeviceOrientationEvent) {
+    if (typeof DeviceOrientationEvent.requestPermission === 'function') {
+      document.addEventListener('click', function askPermission() {
+        DeviceOrientationEvent.requestPermission()
+          .then(permissionState => {
+            if (permissionState === 'granted') {
+              window.addEventListener('deviceorientation', handleOrientation);
+            }
+          })
+          .catch(console.error);
+        document.removeEventListener('click', askPermission);
+      }, { once: true });
+    } else {
+      window.addEventListener('deviceorientation', handleOrientation);
+    }
+  }
+}
+
+// Mouse movement parallax fallback for desktop
+window.addEventListener('mousemove', (e) => {
+  if (!('ontouchstart' in window)) {
+    let cx = window.innerWidth / 2;
+    let cy = window.innerHeight / 2;
+    let dx = (e.clientX - cx) / cx;
+    let dy = (e.clientY - cy) / cy;
+
+    card.style.transform = `rotateY(${dx * 8}deg) rotateX(${-dy * 8}deg)`;
+    canvas.style.transform = `translateX(${dx * 15}px) translateY(${dy * 15}px)`;
+  }
+});
+
+initGyro();
+
+</script>
+
+</body>
+</html>
